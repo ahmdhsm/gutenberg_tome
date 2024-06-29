@@ -44,7 +44,6 @@ class ChipWrap extends StatelessWidget {
                 labelStyle: TextStyle(color: AppColor.buttonText),
                 padding: const EdgeInsets.symmetric(
                   horizontal: 2,
-                  vertical: 0,
                 ),
                 backgroundColor: AppColor.accentColor,
                 shape: RoundedRectangleBorder(

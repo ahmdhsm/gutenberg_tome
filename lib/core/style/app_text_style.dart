@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gutenberg_tome/core/style/app_color.dart';
 
 class AppTextStyle {
-  static header({Color? color}) {
+  static TextStyle header({Color? color}) {
     return TextStyle(
       color: color ?? AppColor.primaryText,
       fontSize: 20,
@@ -10,7 +10,7 @@ class AppTextStyle {
     );
   }
 
-  static caption({Color? color}) {
+  static TextStyle caption({Color? color}) {
     return TextStyle(
       color: color ?? AppColor.primaryText,
       fontSize: 15,
