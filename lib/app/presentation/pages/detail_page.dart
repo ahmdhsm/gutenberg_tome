@@ -16,19 +16,19 @@ class DetailPage extends StatefulWidget {
 
 class _DetailPageState extends State<DetailPage> {
   final subject = [
-    "Bildungsromans",
-    "City and town life -- Fiction",
-    "Didactic fiction",
-    "Domestic fiction",
-    "England -- Fiction",
-    "Love stories",
-    "Married people -- Fiction",
-    "Young women -- Fiction"
+    'Bildungsromans',
+    'City and town life -- Fiction',
+    'Didactic fiction',
+    'Domestic fiction',
+    'England -- Fiction',
+    'Love stories',
+    'Married people -- Fiction',
+    'Young women -- Fiction'
   ];
 
   final bookshelves = [
-    "Bildungsromans",
-    "tes2",
+    'Bildungsromans',
+    'tes2',
   ];
 
   @override
@@ -57,11 +57,11 @@ class _DetailPageState extends State<DetailPage> {
           children: [
             const BookCover(
               imageUrl:
-                  "https://www.gutenberg.org/cache/epub/84/pg84.cover.medium.jpg",
+                  'https://www.gutenberg.org/cache/epub/84/pg84.cover.medium.jpg',
             ),
             const SizedBox(height: 20),
             Text(
-              'Romeo and Juliet Romeo and Juliet Romeo and Juliet Romeo and Juliet Romeo and Juliet',
+              'Romeo and Juliet',
               style: TextStyle(
                 color: AppColor.primaryText,
                 fontSize: 20,

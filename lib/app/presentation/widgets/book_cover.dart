@@ -27,7 +27,7 @@ class BookCover extends StatelessWidget {
 }
 
 class _Loading extends StatelessWidget {
-  const _Loading({super.key});
+  const _Loading();
 
   @override
   Widget build(BuildContext context) {
