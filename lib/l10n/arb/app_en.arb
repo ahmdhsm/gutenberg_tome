@@ -1,7 +1,8 @@
 {
     "@@locale": "en",
     "applicationName": "Gutenberg Tome",
-    "searchBook": "Search Book",
+    "searchBookByTitle": "Search Book By Title",
     "subject": "Subject",
-    "bookshelves": "Bookshelves"
+    "bookshelves": "Bookshelves",
+    "noBook": "No Book"
 }
