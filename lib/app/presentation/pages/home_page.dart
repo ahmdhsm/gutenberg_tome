@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:gutenberg_tome/app/presentation/fragments/book_list_content.dart';
+import 'package:gutenberg_tome/app/presentation/fragments/favorite_book_content.dart';
 import 'package:gutenberg_tome/core/style/app_color.dart';
 
 @RoutePage()
@@ -11,7 +12,8 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
+class _HomePageState extends State<HomePage>
+    with TickerProviderStateMixin, AutomaticKeepAliveClientMixin {
   int currentIndex = 0;
 
   late TabController _tabController;
@@ -29,13 +31,17 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
+    if (wantKeepAlive) {
+      super.build(context);
+    }
+
     return Scaffold(
       backgroundColor: AppColor.background,
       body: TabBarView(
         controller: _tabController,
-        children: [
-          const BookListContent(),
-          Container(),
+        children: const [
+          BookListContent(),
+          FavoriteBookContent(),
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
@@ -54,25 +60,25 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
         currentIndex: currentIndex,
         onTap: (value) {
           if (value != _tabController.index) {
-            // setState(() {
-            //   currentIndex = value;
-            // });
             _tabController.animateTo(value);
           }
         },
         items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.home_outlined),
-            label: 'aa',
+            label: '',
             activeIcon: Icon(Icons.home),
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.favorite_outline),
-            label: 'aa',
+            label: '',
             activeIcon: Icon(Icons.favorite),
           ),
         ],
       ),
     );
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }
