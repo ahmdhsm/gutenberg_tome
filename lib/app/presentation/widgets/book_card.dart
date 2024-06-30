@@ -8,13 +8,9 @@ import 'package:gutenberg_tome/core/style/app_text_style.dart';
 class BookCard extends StatelessWidget {
   const BookCard({
     super.key,
-    required this.title,
-    required this.author,
     required this.book,
   });
 
-  final String title;
-  final List<String> author;
   final BookEntity book;
 
   @override
@@ -46,24 +42,16 @@ class BookCard extends StatelessWidget {
                   size: 20,
                   color: AppColor.primaryText,
                 ),
-                InkWell(
-                  onTap: () {},
-                  child: Icon(
-                    Icons.favorite,
-                    color: AppColor.buttonBackground,
-                    size: 25,
-                  ),
-                ),
               ],
             ),
             const SizedBox(height: 10),
             Text(
-              title,
+              book.title,
               style: AppTextStyle.header(),
               overflow: TextOverflow.ellipsis,
             ),
             Text(
-              author.join('; '),
+              book.authorsLabel,
               style: AppTextStyle.caption(),
               overflow: TextOverflow.ellipsis,
             ),
