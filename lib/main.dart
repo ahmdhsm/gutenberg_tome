@@ -1,10 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get_it/get_it.dart';
 import 'package:gutenberg_tome/l10n/l10n.dart';
 import 'package:gutenberg_tome/core/route/app_router.dart';
 import 'package:gutenberg_tome/core/style/app_color.dart';
+import 'package:injectable/injectable.dart';
 
-void main() {
+import 'main.config.dart';
+
+final getIt = GetIt.instance;
+
+@InjectableInit()
+void configureDependencies() => getIt.init();
+
+void main() async {
+  configureDependencies();
+
+  WidgetsFlutterBinding.ensureInitialized();
+
   SystemChrome.setSystemUIOverlayStyle(
     const SystemUiOverlayStyle(
       statusBarColor: Colors.transparent,

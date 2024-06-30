@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 class BookCover extends StatelessWidget {
   const BookCover({super.key, required this.imageUrl});
 
-  final String imageUrl;
+  final String? imageUrl;
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +16,7 @@ class BookCover extends StatelessWidget {
         width: MediaQuery.of(context).size.width - 20,
         height: MediaQuery.of(context).size.width - 20,
         child: CachedNetworkImage(
-          imageUrl: imageUrl,
+          imageUrl: imageUrl ?? '',
           fit: BoxFit.contain,
           placeholder: (context, url) => const _Loading(),
           errorWidget: (context, url, error) => const Icon(Icons.error),

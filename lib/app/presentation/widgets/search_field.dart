@@ -1,22 +1,29 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:gutenberg_tome/core/style/app_color.dart';
-import 'package:gutenberg_tome/l10n/l10n.dart';
 
 class SearchField extends StatefulWidget {
-  const SearchField({super.key});
+  const SearchField({
+    super.key,
+    required this.onSearch,
+    required this.placeholder,
+  });
+
+  final Future<void> Function(String) onSearch;
+  final String placeholder;
 
   @override
   State<SearchField> createState() => _SearchFieldState();
 }
 
 class _SearchFieldState extends State<SearchField> {
+  Timer? _debounceTimer;
+  final _debounceDuration = const Duration(milliseconds: 500);
   final _textController = TextEditingController();
 
   @override
   void initState() {
-    _textController.addListener(() {
-      setState(() {});
-    });
     super.initState();
   }
 
@@ -52,13 +59,24 @@ class _SearchFieldState extends State<SearchField> {
               ),
               cursorColor: AppColor.buttonText,
               decoration: InputDecoration(
-                hintText: context.l10n.searchBook,
+                hintText: widget.placeholder,
                 hintStyle: TextStyle(
                   color: AppColor.secondaryText,
                   fontSize: 20,
                 ),
                 border: InputBorder.none,
               ),
+              onChanged: (value) {
+                setState(() {});
+
+                if (_debounceTimer != null && _debounceTimer!.isActive) {
+                  _debounceTimer!.cancel();
+                }
+
+                _debounceTimer = Timer(_debounceDuration, () {
+                  widget.onSearch(value);
+                });
+              },
             ),
           ),
           const SizedBox(width: 10),

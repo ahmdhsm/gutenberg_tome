@@ -15,10 +15,22 @@ abstract class _$AppRouter extends RootStackRouter {
 
   @override
   final Map<String, PageFactory> pagesMap = {
-    DetailRoute.name: (routeData) {
+    BlocProviderRoute.name: (routeData) {
+      final args = routeData.argsAs<BlocProviderRouteArgs>(
+          orElse: () => const BlocProviderRouteArgs());
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const DetailPage(),
+        child: BlocProviderPage(key: args.key),
+      );
+    },
+    DetailRoute.name: (routeData) {
+      final args = routeData.argsAs<DetailRouteArgs>();
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: DetailPage(
+          key: args.key,
+          book: args.book,
+        ),
       );
     },
     HomeRoute.name: (routeData) {
@@ -31,17 +43,69 @@ abstract class _$AppRouter extends RootStackRouter {
 }
 
 /// generated route for
+/// [BlocProviderPage]
+class BlocProviderRoute extends PageRouteInfo<BlocProviderRouteArgs> {
+  BlocProviderRoute({
+    Key? key,
+    List<PageRouteInfo>? children,
+  }) : super(
+          BlocProviderRoute.name,
+          args: BlocProviderRouteArgs(key: key),
+          initialChildren: children,
+        );
+
+  static const String name = 'BlocProviderRoute';
+
+  static const PageInfo<BlocProviderRouteArgs> page =
+      PageInfo<BlocProviderRouteArgs>(name);
+}
+
+class BlocProviderRouteArgs {
+  const BlocProviderRouteArgs({this.key});
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'BlocProviderRouteArgs{key: $key}';
+  }
+}
+
+/// generated route for
 /// [DetailPage]
-class DetailRoute extends PageRouteInfo<void> {
-  const DetailRoute({List<PageRouteInfo>? children})
-      : super(
+class DetailRoute extends PageRouteInfo<DetailRouteArgs> {
+  DetailRoute({
+    Key? key,
+    required BookEntity book,
+    List<PageRouteInfo>? children,
+  }) : super(
           DetailRoute.name,
+          args: DetailRouteArgs(
+            key: key,
+            book: book,
+          ),
           initialChildren: children,
         );
 
   static const String name = 'DetailRoute';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static const PageInfo<DetailRouteArgs> page = PageInfo<DetailRouteArgs>(name);
+}
+
+class DetailRouteArgs {
+  const DetailRouteArgs({
+    this.key,
+    required this.book,
+  });
+
+  final Key? key;
+
+  final BookEntity book;
+
+  @override
+  String toString() {
+    return 'DetailRouteArgs{key: $key, book: $book}';
+  }
 }
 
 /// generated route for

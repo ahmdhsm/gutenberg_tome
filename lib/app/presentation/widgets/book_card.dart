@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:gutenberg_tome/app/domain/entities/book_entity.dart';
 import 'package:gutenberg_tome/core/route/app_router.dart';
 import 'package:gutenberg_tome/core/style/app_color.dart';
 import 'package:gutenberg_tome/core/style/app_text_style.dart';
@@ -9,16 +10,20 @@ class BookCard extends StatelessWidget {
     super.key,
     required this.title,
     required this.author,
+    required this.book,
   });
 
   final String title;
   final List<String> author;
+  final BookEntity book;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        context.pushRoute(const DetailRoute());
+        context.pushRoute(
+          DetailRoute(book: book),
+        );
       },
       child: Container(
         padding: const EdgeInsets.symmetric(
