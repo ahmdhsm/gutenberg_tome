@@ -49,11 +49,7 @@ class _FavoriteBookContentState extends State<FavoriteBookContent> {
                       horizontal: 10,
                       vertical: 5,
                     ),
-                    child: BookCard(
-                      title: book.title,
-                      author: book.authors.map((e) => e.name).toList(),
-                      book: book,
-                    ),
+                    child: BookCard(book: book),
                   );
                 },
                 itemCount: state.books.length,

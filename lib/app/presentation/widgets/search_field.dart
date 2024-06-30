@@ -35,6 +35,8 @@ class _SearchFieldState extends State<SearchField> {
 
   void _clearValue() {
     _textController.text = '';
+    setState(() {});
+    widget.onSearch('');
   }
 
   @override
